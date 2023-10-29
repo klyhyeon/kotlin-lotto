@@ -39,14 +39,9 @@ class CalculatorTest {
 
     @Test
     fun `custom delimiter returns sum of all numbers`() {
-        val reg = Regex("//(.)\n")
+        val cal = Calculator("//l\n1l2l3");
 
-        val input = "//,\n"
-
-        var i = 1
-        reg.find(input)?.groupValues?.forEach { println("group ${i++} $it") }
-
-        assertTrue(reg.matches(input))
+        assertThat(cal.calculate()).isEqualTo(6)
     }
 
 }
