@@ -28,8 +28,13 @@ class Calculator(val input: String?) {
         isCustomDelimiter: Boolean = false,
     ): Int {
         if (isCustomDelimiter) {
-            return input!!.substring(input.indexOf("\n").plus(1)).split(delimiter).sumOf { it.toInt() }
+            return input!!.substring(input.indexOf("\n").plus(1)).split(delimiter).sumOf { it.toInt().validateMinus() }
         }
-        return input?.split(delimiter)?.map { it.toInt() }.orEmpty().sum()
+        return input?.split(delimiter)?.map { it.toInt().validateMinus() }.orEmpty().sum()
     }
+}
+
+fun Int.validateMinus(): Int {
+    if (this < 0) throw RuntimeException()
+    return this
 }

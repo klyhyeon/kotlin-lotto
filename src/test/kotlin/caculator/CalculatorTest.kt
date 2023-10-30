@@ -1,8 +1,11 @@
 package caculator
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import java.lang.RuntimeException
 
 class CalculatorTest {
 
@@ -42,6 +45,13 @@ class CalculatorTest {
         val cal = Calculator("//l\n1l2l3");
 
         assertThat(cal.calculate()).isEqualTo(6)
+    }
+
+    @Test
+    fun `if element less than zero, throw RuntimeException`() {
+        val cal = Calculator("//l\n-1l2l3");
+
+        assertThrows<RuntimeException> { cal.calculate() }
     }
 
 }
